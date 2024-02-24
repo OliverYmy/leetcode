@@ -5,18 +5,21 @@
  */
 
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    int countDigits(int num) {
-        int ans = 0;
-        int n = num;
-        while (num) {
-            int bit = num % 10;
-            if (n % bit == 0)
-                ans += 1;
-            num /= 10;
-        }
-        return ans;
-    }
+	int countDigits(int num)
+	{
+		int ans = 0;
+		int n = num;
+		while (num)
+		{
+			int bit = num % 10;
+			if (n % bit == 0)
+				ans += 1;
+			num /= 10;
+		}
+		return ans;
+	}
 };
 // @lc code=end

@@ -7,46 +7,53 @@
 // @lc code=start
 #include <bits/stdc++.h>
 using namespace std;
-class Solution {
+class Solution
+{
 public:
-    bool is_split(int a, int b) {
-        for (int i = a / b; i >= 0; --i) {
-            if ((a - i * b) % (b + 1) == 0)
-                return true;
-        }
-        return false;
-    }
+	bool is_split(int a, int b)
+	{
+		for (int i = a / b; i >= 0; --i)
+		{
+			if ((a - i * b) % (b + 1) == 0)
+				return true;
+		}
+		return false;
+	}
 
-    int minGroupsForValidAssignment(vector<int> &nums) {
-        int n = nums.size();
+	int minGroupsForValidAssignment(vector<int> &nums)
+	{
+		int n = nums.size();
 
-        // get frequency
-        unordered_map<int, int> my_map;
-        for (int i = 0; i < n; ++i)
-            my_map[nums[i]]++;
-        vector<int> fre;
-        for (auto &it : my_map)
-            fre.push_back(it.second);
+		// get frequency
+		unordered_map<int, int> my_map;
+		for (int i = 0; i < n; ++i)
+			my_map[nums[i]]++;
+		vector<int> fre;
+		for (auto &it : my_map)
+			fre.push_back(it.second);
 
-        int ans = n;
-        int k = *min_element(fre.begin(), fre.end());
+		int ans = n;
+		int k = *min_element(fre.begin(), fre.end());
 
-        for (; k >= 1; --k) {
-            bool isSplit = true;
-            for (auto &num : fre) {
-                if (!is_split(num, k))
-                    isSplit = false;
-            }
+		for (; k >= 1; --k)
+		{
+			bool isSplit = true;
+			for (auto &num : fre)
+			{
+				if (!is_split(num, k))
+					isSplit = false;
+			}
 
-            if (isSplit) {
-                int tmp = 0;
-                for (auto &num : fre)
-                    tmp += (num + k) / (k + 1);
-                return tmp;
-            }
-        }
+			if (isSplit)
+			{
+				int tmp = 0;
+				for (auto &num : fre)
+					tmp += (num + k) / (k + 1);
+				return tmp;
+			}
+		}
 
-        return ans;
-    }
+		return ans;
+	}
 };
 // @lc code=end
